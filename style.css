@@ -33,7 +33,7 @@ body {
     min-height: 100vh;
     background:
         linear-gradient(115deg, rgba(8, 3, 7, 0.88), rgba(35, 5, 16, 0.76)),
-        url("../assets/backgrounds/red-flowers.jpg") center / cover fixed,
+        url("../assets/backgrounds/red-flowers.png") center / cover fixed,
         #10070c;
     color: var(--white);
     font-family: "Manrope", sans-serif;
