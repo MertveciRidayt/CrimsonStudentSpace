@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRIMSON — Student Space</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/themes.css">
+</head>
+
+<body data-theme="garden">
+
+<div class="app">
+
+    <!-- ЛЕВАЯ ПАНЕЛЬ -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span class="logo-symbol">✳</span>
+            <div>
+                <h2>CRIMSON</h2>
+                <small>STUDENT SPACE</small>
+            </div>
+        </div>
+
+        <div class="sidebar-label">WORKSPACE</div>
+
+        <nav class="navigation">
+            <button class="nav-item active" data-page="dashboard">
+                <span>⌂</span> Головна
+            </button>
+
+            <button class="nav-item" data-page="schedule">
+                <span>▦</span> Розклад
+            </button>
+
+            <button class="nav-item" data-page="tasks">
+                <span>☷</span> Завдання
+            </button>
+
+            <button class="nav-item" data-page="goals">
+                <span>◎</span> Цілі
+            </button>
+
+            <button class="nav-item" data-page="completed">
+                <span>✓</span> Виконане
+            </button>
+
+            <button class="nav-item" data-page="materials">
+                <span>▤</span> Матеріали
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-status">
+                <span class="status-dot"></span>
+                YOUR PERSONAL SPACE
+            </div>
+            <p>Організуй навчання.<br>Керуй власним часом.</p>
+        </div>
+
+    </aside>
+
+    <!-- ОСНОВНА ЧАСТИНА -->
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+                <div class="topbar-caption">YOUR STUDENT WORKSPACE</div>
+                <div class="topbar-date" id="currentDate"></div>
+            </div>
+
+            <div class="topbar-actions">
+                <button class="theme-button" id="themeToggle">
+                    <span>◈</span>
+                    <span id="themeName">GAME MODE</span>
+                </button>
+
+                <div class="profile">
+                    <div class="profile-avatar">S</div>
+                    <div>
+                        <strong>STUDENT</strong>
+                        <small>Personal account</small>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+        <div class="content" id="content">
+
+            <!-- ГОЛОВНА -->
+            <section class="page active" id="dashboard">
+
+                <div class="hero">
+                    <div class="hero-content">
+                        <span class="eyebrow">WELCOME TO YOUR SPACE</span>
+                        <h1>Твій час.<br><span>Твої правила.</span></h1>
+                        <p>Керуй навчанням, став цілі та досягай більшого.</p>
+                        <button class="primary-button" data-go="tasks">
+                            Перейти до завдань →
+                        </button>
+                    </div>
+                    <div class="hero-number">01</div>
+                </div>
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">OVERVIEW</span>
+                        <h2>Твій прогрес</h2>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <span class="stat-icon">☷</span>
+                        <p>Активні завдання</p>
+                        <h2 id="activeCount">0</h2>
+                        <small>Очікують виконання</small>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="stat-icon">✓</span>
+                        <p>Виконано</p>
+                        <h2 id="completedCount">0</h2>
+                        <small>Завершені завдання</small>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="stat-icon">◎</span>
+                        <p>Мої цілі</p>
+                        <h2 id="goalsCount">0</h2>
+                        <small>Створені цілі</small>
+                    </div>
+
+                    <div class="stat-card">
+                        <span class="stat-icon">★</span>
+                        <p>Середня оцінка</p>
+                        <h2 id="averageGrade">—</h2>
+                        <small>За виконані роботи</small>
+                    </div>
+
+                </div>
+
+                <div class="dashboard-grid">
+
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3>Найближчі завдання</h3>
+                            <button class="text-button" data-go="tasks">Усі →</button>
+                        </div>
+                        <div id="dashboardTasks" class="task-list"></div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3>Мій прогрес</h3>
+                        </div>
+
+                        <div class="progress-info">
+                            <span>Виконання завдань</span>
+                            <strong id="progressPercent">0%</strong>
+                        </div>
+
+                        <div class="progress-track">
+                            <div class="progress-fill" id="progressBar"></div>
+                        </div>
+
+                        <p class="muted-text" id="progressMessage">
+                            Почни виконувати завдання, щоб побачити прогрес.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- РОЗКЛАД -->
+            <section class="page" id="schedule">
+
+                <div class="page-heading">
+                    <div>
+                        <span class="eyebrow">YOUR WEEK</span>
+                        <h1>Розклад</h1>
+                        <p>Твій навчальний тиждень в одному місці.</p>
+                    </div>
+
+                    <button class="primary-button" id="addLesson">
+                        + Додати пару
+                    </button>
+                </div>
+
+                <div class="schedule-days" id="scheduleDays"></div>
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 id="scheduleDayTitle">Понеділок</h3>
+                        <span class="muted-text">РОЗКЛАД ЗАНЯТЬ</span>
+                    </div>
+
+                    <div id="scheduleList" class="schedule-list"></div>
+                </div>
+
+            </section>
+
+            <!-- ЗАВДАННЯ -->
+            <section class="page" id="tasks">
+
+                <div class="page-heading">
+                    <div>
+                        <span class="eyebrow">TASK MANAGEMENT</span>
+                        <h1>Завдання</h1>
+                        <p>Не забувай про важливе.</p>
+                    </div>
+
+                    <button class="primary-button" id="addTask">
+                        + Нове завдання
+                    </button>
+                </div>
+
+                <div class="filter-bar">
+                    <button class="filter-button active" data-filter="all">Усі</button>
+                    <button class="filter-button" data-filter="active">Активні</button>
+                    <button class="filter-button" data-filter="high">Важливі</button>
+                </div>
+
+                <div class="panel">
+                    <div id="tasksList" class="task-list"></div>
+                </div>
+
+            </section>
+
+            <!-- ЦІЛІ -->
+            <section class="page" id="goals">
+
+                <div class="page-heading">
+                    <div>
+                        <span class="eyebrow">PERSONAL DEVELOPMENT</span>
+                        <h1>Мої цілі</h1>
+                        <p>Великі результати починаються з маленьких кроків.</p>
+                    </div>
+
+                    <button class="primary-button" id="addGoal">
+                        + Нова ціль
+                    </button>
+                </div>
+
+                <div class="goals-grid" id="goalsList"></div>
+
+            </section>
+
+            <!-- ВИКОНАНЕ -->
+            <section class="page" id="completed">
+
+                <div class="page-heading">
+                    <div>
+                        <span class="eyebrow">ACHIEVEMENTS</span>
+                        <h1>Виконане</h1>
+                        <p>Тут зберігаються твої результати.</p>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3>Історія виконаних завдань</h3>
+                    </div>
+                    <div id="completedList" class="task-list"></div>
+                </div>
+
+            </section>
+
+            <!-- МАТЕРІАЛИ -->
+            <section class="page" id="materials">
+
+                <div class="page-heading">
+                    <div>
+                        <span class="eyebrow">KNOWLEDGE BASE</span>
+                        <h1>Матеріали</h1>
+                        <p>Усі необхідні навчальні ресурси в одному місці.</p>
+                    </div>
+
+                    <button class="primary-button" id="addMaterial">
+                        + Додати матеріал
+                    </button>
+                </div>
+
+                <div class="materials-grid" id="materialsList"></div>
+
+            </section>
+
+        </div>
+
+        <footer class="footer">
+            <span>CRIMSON STUDENT SPACE</span>
+            <span>DESIGNED FOR YOUR FUTURE © 2026</span>
+        </footer>
+
+    </main>
+
+</div>
+
+<!-- МОДАЛЬНЕ ВІКНО -->
+<div class="modal-overlay" id="modalOverlay">
+
+    <div class="modal">
+
+        <div class="modal-heading">
+            <h2 id="modalTitle">Нове завдання</h2>
+            <button class="close-modal" id="closeModal">✕</button>
+        </div>
+
+        <form id="modalForm">
+            <div id="modalFields"></div>
+
+            <button type="submit" class="primary-button modal-submit">
+                Зберегти
+            </button>
+        </form>
+
+    </div>
+
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/tasks.js"></script>
+<script src="js/schedule.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
