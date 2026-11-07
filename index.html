@@ -20,7 +20,7 @@
 
     <!-- ЛІВА ПАНЕЛЬ -->
     <aside class="sidebar">
-        <div class="logo">
+        <div class="logo" id="profileOpen" role="button" tabindex="0" aria-label="Відкрити особистий кабінет">
             <span class="logo-symbol">C.</span>
             <div>
                 <h2>CRIMSON</h2>
@@ -180,7 +180,7 @@
     </main>
 </div>
 
-<!-- МОДАЛЬНЕ ВІКНО -->
+<!-- ОСНОВНЕ МОДАЛЬНЕ ВІКНО -->
 <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
         <button class="modal-close" id="closeModal">×</button>
@@ -194,10 +194,182 @@
     </div>
 </div>
 
+<!-- ОСОБИСТИЙ КАБІНЕТ СТУДЕНТА -->
+<div class="profile-overlay" id="profileOverlay">
+    <div class="profile-modal">
+
+        <div class="profile-header">
+            <div>
+                <span class="profile-label">CRIMSON / PERSONAL SPACE</span>
+                <h2>Особистий кабінет</h2>
+            </div>
+
+            <button class="profile-close" id="profileClose" type="button">×</button>
+        </div>
+
+        <!-- НАВІГАЦІЯ КАБІНЕТУ -->
+        <div class="profile-tabs">
+            <button class="profile-tab active" data-profile-tab="info">Профіль</button>
+            <button class="profile-tab" data-profile-tab="grades">Оцінки</button>
+            <button class="profile-tab" data-profile-tab="goals">Мої цілі</button>
+            <button class="profile-tab" data-profile-tab="summary">Статистика</button>
+        </div>
+
+        <!-- ПРОФІЛЬ -->
+        <section class="profile-panel active" id="profile-info">
+
+            <div class="profile-section-heading">
+                <span>01 / PERSONAL INFORMATION</span>
+                <h3>Інформація про студента</h3>
+            </div>
+
+            <form id="profileForm" class="profile-form">
+
+                <label>
+                    Ім'я
+                    <input type="text" id="studentFirstName" placeholder="Введіть ім'я">
+                </label>
+
+                <label>
+                    Прізвище
+                    <input type="text" id="studentLastName" placeholder="Введіть прізвище">
+                </label>
+
+                <label class="profile-full">
+                    Назва курсу / спеціальності
+                    <input type="text" id="studentCourse" placeholder="Наприклад, Комп'ютерні науки">
+                </label>
+
+                <button type="submit" class="profile-save">
+                    Зберегти інформацію
+                </button>
+
+            </form>
+        </section>
+
+        <!-- ОЦІНКИ -->
+        <section class="profile-panel" id="profile-grades">
+
+            <div class="profile-section-heading">
+                <span>02 / ACADEMIC RESULTS</span>
+                <h3>Мої оцінки</h3>
+                <p>Додавай власні результати навчання.</p>
+            </div>
+
+            <form id="gradeForm" class="profile-form">
+
+                <label>
+                    Предмет
+                    <input type="text" id="gradeSubject" placeholder="Назва предмета" required>
+                </label>
+
+                <label>
+                    Оцінка
+                    <input type="number" id="gradeValue" placeholder="Наприклад, 10" min="1" max="12" required>
+                </label>
+
+                <label class="profile-full">
+                    Дата
+                    <input type="date" id="gradeDate">
+                </label>
+
+                <button type="submit" class="profile-save">
+                    + Додати оцінку
+                </button>
+
+            </form>
+
+            <div class="profile-list" id="gradesList"></div>
+
+        </section>
+
+        <!-- ОСОБИСТІ ЦІЛІ -->
+        <section class="profile-panel" id="profile-goals">
+
+            <div class="profile-section-heading">
+                <span>03 / PERSONAL DEVELOPMENT</span>
+                <h3>Мої цілі</h3>
+                <p>Коротко записуй те, чого хочеш досягти.</p>
+            </div>
+
+            <form id="profileGoalForm" class="profile-form">
+
+                <label class="profile-full">
+                    Назва цілі
+                    <input type="text" id="profileGoalTitle" placeholder="Наприклад, вивчити C++" required>
+                </label>
+
+                <label class="profile-full">
+                    Короткий опис
+                    <textarea id="profileGoalDescription" placeholder="Що саме потрібно зробити?" rows="3"></textarea>
+                </label>
+
+                <button type="submit" class="profile-save">
+                    + Додати ціль
+                </button>
+
+            </form>
+
+            <div class="profile-list" id="profileGoalsList"></div>
+
+        </section>
+
+        <!-- СТАТИСТИКА -->
+        <section class="profile-panel" id="profile-summary">
+
+            <div class="profile-section-heading">
+                <span>04 / OVERVIEW</span>
+                <h3>Моя навчальна статистика</h3>
+            </div>
+
+            <div class="profile-stats">
+
+                <div class="profile-stat-card">
+                    <span>УСЬОГО ОЦІНОК</span>
+                    <strong id="summaryGrades">0</strong>
+                </div>
+
+                <div class="profile-stat-card">
+                    <span>СЕРЕДНЯ ОЦІНКА</span>
+                    <strong id="summaryAverage">—</strong>
+                </div>
+
+                <div class="profile-stat-card">
+                    <span>МОЇ ЦІЛІ</span>
+                    <strong id="summaryGoals">0</strong>
+                </div>
+
+                <div class="profile-stat-card">
+                    <span>ВИКОНАНІ ЗАВДАННЯ</span>
+                    <strong id="summaryTasks">0</strong>
+                </div>
+
+            </div>
+
+            <div class="profile-summary-text">
+                <span>PERSONAL NOTE</span>
+                <p>
+                    Навчання — це поступовий процес.
+                    Кожен виконаний пункт наближає до результату.
+                </p>
+            </div>
+
+        </section>
+
+        <div class="profile-footer">
+            <span>CRIMSON STUDENT SPACE</span>
+            <span>PERSONAL AREA / 2026</span>
+        </div>
+
+    </div>
+</div>
+
+<!-- ПІДКЛЮЧЕННЯ JAVASCRIPT -->
 <script src="js/storage.js"></script>
 <script src="js/tasks.js"></script>
 <script src="js/schedule.js"></script>
 <script src="js/app.js"></script>
+<script src="js/profile.js"></script>
 
 </body>
 </html>

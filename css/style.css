@@ -866,3 +866,367 @@ body::before {
         gap: 10px;
     }
 }
+/* =========================================
+   PERSONAL STUDENT CABINET
+========================================= */
+
+/* Клікабельний логотип */
+
+#profileOpen {
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+#profileOpen:hover {
+    filter: brightness(1.25);
+    transform: translateY(-2px);
+}
+
+#profileOpen:focus-visible {
+    outline: 2px solid #c52b50;
+    outline-offset: 5px;
+}
+
+/* Затемнення фону */
+
+.profile-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background: rgba(5, 0, 3, 0.88);
+    backdrop-filter: blur(12px);
+}
+
+.profile-overlay.open {
+    display: flex;
+}
+
+/* Основне вікно */
+
+.profile-modal {
+    width: min(850px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 35px;
+    color: #f6e9ed;
+    background: linear-gradient(145deg, #200911, #100509);
+    border: 1px solid rgba(195, 47, 78, 0.35);
+    border-radius: 22px;
+    box-shadow: 0 25px 100px rgba(0, 0, 0, 0.7);
+    animation: profileAppear 0.3s ease;
+}
+
+@keyframes profileAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-label,
+.profile-section-heading > span,
+.profile-summary-text > span {
+    color: #bd526d;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.profile-header h2 {
+    margin-top: 9px;
+    font-family: Georgia, serif;
+    font-size: clamp(25px, 4vw, 36px);
+}
+
+.profile-close {
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 27px;
+    cursor: pointer;
+}
+
+.profile-close:hover {
+    background: #8e1836;
+}
+
+/* Вкладки */
+
+.profile-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin: 25px 0 30px;
+}
+
+.profile-tab {
+    padding: 11px 17px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: #bbaab0;
+    background: rgba(255, 255, 255, 0.035);
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.profile-tab:hover,
+.profile-tab.active {
+    color: white;
+    border-color: #a52a49;
+    background: rgba(145, 23, 53, 0.35);
+}
+
+/* Панелі */
+
+.profile-panel {
+    display: none;
+}
+
+.profile-panel.active {
+    display: block;
+}
+
+.profile-section-heading {
+    margin-bottom: 25px;
+}
+
+.profile-section-heading h3 {
+    margin: 10px 0;
+    font-family: Georgia, serif;
+    font-size: 25px;
+}
+
+.profile-section-heading p {
+    color: #a9939b;
+    font-size: 13px;
+}
+
+/* Форми */
+
+.profile-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.profile-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    color: #d8c4ca;
+    font-size: 12px;
+}
+
+.profile-full {
+    grid-column: 1 / -1;
+}
+
+.profile-form input,
+.profile-form textarea {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    outline: none;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.28);
+    font: inherit;
+}
+
+.profile-form input:focus,
+.profile-form textarea:focus {
+    border-color: #b52d50;
+}
+
+.profile-form input::placeholder,
+.profile-form textarea::placeholder {
+    color: #806b73;
+}
+
+.profile-form textarea {
+    resize: vertical;
+}
+
+.profile-save {
+    grid-column: 1 / -1;
+    justify-self: start;
+    padding: 13px 21px;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    background: linear-gradient(135deg, #a51d42, #6e102b);
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.profile-save:hover {
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+}
+
+/* Списки оцінок і цілей */
+
+.profile-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.profile-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.profile-item strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #f4e6eb;
+    font-size: 14px;
+}
+
+.profile-item small {
+    color: #a9939b;
+    font-size: 11px;
+}
+
+.profile-item-score {
+    color: #e75b7e;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.profile-delete {
+    padding: 7px 10px;
+    border: 1px solid rgba(220, 65, 95, 0.3);
+    border-radius: 8px;
+    color: #e58ba0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.profile-delete:hover {
+    background: rgba(170, 20, 55, 0.3);
+}
+
+.profile-empty {
+    padding: 22px;
+    border: 1px dashed rgba(255, 255, 255, 0.13);
+    border-radius: 12px;
+    color: #a9939b;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* Статистика */
+
+.profile-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 13px;
+}
+
+.profile-stat-card {
+    min-height: 115px;
+    padding: 20px;
+    border: 1px solid rgba(190, 55, 85, 0.2);
+    border-radius: 13px;
+    background: rgba(110, 16, 43, 0.17);
+}
+
+.profile-stat-card span {
+    display: block;
+    color: #b88d9b;
+    font-size: 10px;
+    letter-spacing: 1.3px;
+}
+
+.profile-stat-card strong {
+    display: block;
+    margin-top: 14px;
+    color: #f5dce5;
+    font-family: Georgia, serif;
+    font-size: 32px;
+}
+
+.profile-summary-text {
+    margin-top: 22px;
+    padding: 20px;
+    border-left: 2px solid #a52a49;
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.profile-summary-text p {
+    margin-top: 10px;
+    color: #c2abb4;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.profile-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #806b73;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+}
+
+/* Адаптація */
+
+@media (max-width: 600px) {
+    .profile-overlay {
+        padding: 10px;
+    }
+
+    .profile-modal {
+        padding: 22px 17px;
+    }
+
+    .profile-form,
+    .profile-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-full,
+    .profile-save {
+        grid-column: auto;
+    }
+
+    .profile-footer {
+        flex-direction: column;
+    }
+}
